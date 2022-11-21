@@ -22,6 +22,9 @@ Taxonomy:
 
 The diagrams are added to the repo as PUML files written in https://plantuml.com/deployment-diagram syntax. Preview using VScode.
 
+### Semantics of IOU
+![vault](out/vault/vault.png)
+
 ### Bob offers 100 FUT to Alice NFT
 ![bid](out/bid/bid.png)
 

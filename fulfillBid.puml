@@ -59,7 +59,10 @@ agent IOU [
     let receiver: Cap<&{FT.Receiver}>
     var amount: UFix64
     let type: Type
+    let sender:Address
     ---
+    sender: Bob
+    receiver: Alice Cap
     uuid:4
     amount: 110
     type: A.xx.FlowUtilityCoin

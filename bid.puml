@@ -54,7 +54,10 @@ agent IOU [
     let receiver: Cap<&{FT.Receiver}>
     var amount: UFix64
     let type: Type
+    let sender:Address
     ---
+    sender: Bob
+    receiver: Alice Cap
     amount: 100
     type: A.xx.FlowUtilityCoin
     validUntil: now+7days

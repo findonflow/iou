@@ -22,14 +22,6 @@ Taxonomy:
 
 The diagrams are added to the repo as PUML files written in https://plantuml.com/deployment-diagram syntax. Preview using VScode.
 
-### Semantics of IOU
-![vault](out/vault/vault.png)
-
- - The FT.Vault is owned by dapper, so dapper needs to sign in order to create IOU
- - The proxy that can create an IOU has to be owned by a user so we know the sender
- - The capbility to the sender is borrowed at creation time and cannot be changed
-
-
 ### Bob offers 100 FUT to Alice NFT
 ![bid](out/bid/bid.png)
 

@@ -12,13 +12,16 @@ The core concept here is an *IOU*. It has the following semantics
 See the following diagrams for an example flow
 ## Diagrams
 
+### Bob offers 100 FUT to Alice NFT
 ![bid](out/bid/bid.png)
 
+### Bob increases bid with 10 FUT
 ![increaseBid](out/increaseBid/increaseBid.png)
 
+### Alice Fulfills the Auction
 ![fulfill](out/fulfillBid/fulfillBid.png)
 
-
+### Alice cancels the auction (alternate)
 ![cancel](out/cancelBid/cancelBid.png)
 
 ## Intended Usecase

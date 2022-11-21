@@ -51,6 +51,15 @@ card Auction [
     ---
     uuid: 2
     start-price: 10
+    ---
+    updateBid(iouProxy: &IOU.Proxy, id:UFix64, vault:@FT.Vault)
+]
+
+agent Proxy [
+    <b>A.xx.IOU.Proxy
+    ---
+    createVault(receiver: Cap<&{FT.Receiver}>, vault: @FT.Vault)
+    updateVault(vault:&IOU.Vault, amount:UFix64)
 ]
 
 agent IOU [
@@ -68,13 +77,15 @@ agent IOU [
     type: A.xx.FlowUtilityCoin
     validUntil: now+7days
 ]
+Bob -right-> Proxy : owns
+Bid -up-> Proxy: 1. borrow
 
 Bob --> Bid : sign
 Dapper -right-> Bid: sign
 
-Bid -right-> Auction: update bid
+Bid -right-> Auction: 3. update bid
 Auction --> IOU : topUp
-Bid <-- Vault : withdraw
+Bid <-- Vault : 2.withdraw
 Vault <-- DapperFUT: from
 Dapper --> DapperFUT : owns
 

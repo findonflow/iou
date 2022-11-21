@@ -4,9 +4,7 @@
 actor Alice
 actor Dapper
 
-actor Bob
-
-Database BobFUT
+Database AliceFUT
 
 Database DapperFUT 
 
@@ -72,19 +70,19 @@ agent IOU [
 Alice --> Bid : sign
 Dapper -right-> Bid: sign
 
-Bid -right-> Auction: update bid
-Auction -down-> IOU : redeem
+Bid -right-> Auction: fulfill bid
+Auction -down-> IOU : redeem and \ndestroy IOU
 Bid <-- Vault : withdraw
 Vault <-- DapperFUT: from
 Dapper --> DapperFUT : owns
 
-IOU -down-> BobFUT: send funds
-BobFUT -left-> DapperFUT: TokenForwarding
+IOU -down-> AliceFUT: send funds
+AliceFUT -left-> DapperFUT: TokenForwarding
 
-Auction -right-> NFT : item 
+Auction --> NFT : item 
 
 IOU -right-> iouupdated: emit
 Alice --> NFT : owns
 
-Bob -left-> BobFUT: owns
+Alice --> AliceFUT: owns
 @enduml

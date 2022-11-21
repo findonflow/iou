@@ -7,7 +7,7 @@ The core concept here is an *IOU*. It has the following semantics
  - an IOU has the capablity to a receiver that is **immutable**, this guarnatees that the funds will **always** go to the intended receipient. It cannot be transferred to another user.
  - an IOU has a Type that corresponds to the DUC/FUT vaults
  - an IOU has an amount that can be updated since an IOU can be topped up
- - an IOU has an expiry date, the IOU contract will guarnatee that withdraw after this amount will panic and fail
+ - an IOU has an expiry date, the IOU contract will guarnatee that withdraw after this time will panic and fail
 
 See the following diagrams for an example flow
 ## Diagrams

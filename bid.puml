@@ -11,6 +11,12 @@ file Bid [
     bid.cdc
 ]
 
+agent Proxy [
+    <b>A.xx.IOU.Proxy
+    ---
+    createVault(receiver: Cap<&{FT.Receiver}>, vault: @FT.Vault)
+]
+
 frame ioucreated [
     A.xx.IOU.IOUCreated
     ---
@@ -46,6 +52,8 @@ card Auction [
     ---
     uuid: 2
     start-price: 10
+    --
+    bid(iouProxy: &IOU.Proxy, id: UInt64, vault: @FT.Vault)
 ]
 
 agent IOU [
@@ -63,12 +71,15 @@ agent IOU [
     validUntil: now+7days
 ]
 
+Bob -right-> Proxy : owns
+
 Bob --> Bid : sign
 Dapper -right-> Bid: sign
 
-Bid -right-> Auction: add bid
-Auction --> IOU : create
-Bid <-- Vault : withdraw
+Bid -up-> Proxy: 1. borrow
+Bid -right-> Auction: 3. add bid 
+Auction --> IOU : create with proxy
+Bid <-- Vault : 2. withdraw
 Vault <-- DapperFUT: from
 Dapper --> DapperFUT : owns
 

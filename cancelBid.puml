@@ -54,7 +54,6 @@ agent IOU [
 ]
 
 Alice --> Bid : sign
-Dapper -right-> Bid: sign
 
 Bid -right-> Auction: cancel auction
 Auction -down-> IOU : destroy

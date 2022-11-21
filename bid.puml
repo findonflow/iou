@@ -1,0 +1,78 @@
+@startuml
+!theme bluegray
+
+actor Bob
+actor Alice
+actor Dapper
+
+Database DapperFUT 
+
+file Bid [
+    bid.cdc
+]
+
+frame ioucreated [
+    A.xx.IOU.IOUCreated
+    ---
+    uuid: UInt64
+    from: Address
+    to: Address
+    type: Type
+    amount: UFix64
+    validUntil: UFix64
+    ---
+    from: Bob
+    to: Alice
+    type: A.xx.FlowUtilityToken.Vault
+    amount:100
+    validUntil: now+7days
+]
+
+
+card Vault [
+        <b>A.xx.FlowUtilityCoin.Vault
+        ---
+        type: FlowUtilityCoin
+        amount:100
+    ]
+
+
+card NFT [
+    <b>A.xx.Example.NFT
+]
+
+card Auction [
+    <b>A.xx.Example.Auction
+    ---
+    uuid: 2
+    start-price: 10
+]
+
+agent IOU [
+    <b>A.xx.IOU.Vault
+    ---
+    let receiver: Cap<&{FT.Receiver}>
+    var amount: UFix64
+    let type: Type
+    ---
+    amount: 100
+    type: A.xx.FlowUtilityCoin
+    validUntil: now+7days
+]
+
+Bob --> Bid : sign
+Dapper -right-> Bid: sign
+
+Bid -right-> Auction: add bid
+Auction --> IOU : create
+Bid <-- Vault : withdraw
+Vault <-- DapperFUT: from
+Dapper --> DapperFUT : owns
+
+IOU --> DapperFUT: deposit funds back
+Auction -right-> NFT : item 
+
+IOU -right-> ioucreated: emit
+Alice --> NFT : owns
+
+@enduml

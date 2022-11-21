@@ -1,0 +1,64 @@
+@startuml
+!theme bluegray
+
+actor Alice
+
+file Bid [
+    cancel.cdc
+]
+
+frame iouupdated [
+    A.xx.IOU.IOUWithdrawn
+    ---
+    uuid: UInt64
+    from: Address
+    to: Address
+    type: Type
+    amount: UFix64
+    validUntil: UFix64
+    ---
+    from: Bob
+    to: Alice
+    type: A.xx.FlowUtilityToken.Vault
+    amount:110
+]
+
+
+card NFT [
+    <b>A.xx.Example.NFT
+    ---
+    uuid: 1
+]
+
+card Auction [
+    <b>A.xx.Example.Auction
+    ---
+    uuid: 2
+    start-price: 10
+]
+
+agent IOU [
+    <b>A.xx.IOU.Vault
+    ---
+    let receiver: Cap<&{FT.Receiver}>
+    var amount: UFix64
+    let type: Type
+    ---
+    uuid:4
+    amount: 110
+    type: A.xx.FlowUtilityCoin
+    validUntil: now+7days
+]
+
+Alice --> Bid : sign
+Dapper -right-> Bid: sign
+
+Bid -right-> Auction: cancel auction
+Auction -down-> IOU : destroy
+
+
+Auction -right-> NFT : item 
+
+IOU -right-> iouupdated: emit
+
+@enduml

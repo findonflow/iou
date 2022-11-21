@@ -12,6 +12,16 @@ The core concept here is an *IOU*. It has the following semantics
 See the following diagrams for an example flow
 ## Diagrams
 
+Taxonomy:
+ - blue rectangles are resources
+ - orange rectangle is the new resource beeing proposed
+ - white folders are events
+ - white files are transactions
+ - people are accounts
+ - blue databases are vaults
+
+The diagrams are added to the repo as PUML files written in https://plantuml.com/deployment-diagram syntax. Preview using VScode.
+
 ### Bob offers 100 FUT to Alice NFT
 ![bid](out/bid/bid.png)
 

@@ -3,7 +3,8 @@
 An IOU is a promise that a sender will send X amount of FT to a recipient.  
 
 The core concept here is an *IOU*. It has the following semantics
- - an IOU is created from a resource stored in a users storage (to guarantee sender)
+ - an IOU is created from a proxy resource stored in a users storage (to guarantee sender), user need to sign because we borrow from his storage
+ - an IOU is created from a Vault of a type that only dapper can do, so dapper needs to sign.
  - an IOU has the capablity to a receiver that is **immutable**, this guarnatees that the funds will **always** go to the intended receipient. It cannot be transferred to another user.
  - an IOU has a Type that corresponds to the DUC/FUT vaults
  - an IOU has an amount that can be updated since an IOU can be topped up
@@ -42,8 +43,11 @@ Examples:
  - Auctions( both English, Dutch, Vickrey, Bucket)
  - Loans/Flowty
  
- ## What needs to be done off chain
+## What needs to be done off chain
  
  In order for this to work there needs to be an accounting solution that knows how to reason about the *IOU.IOUxxx* events that are emitted. 
  In adition there needs to be a routine that checks if IOUs are expired.
  
+ 
+## Questions
+In order to handle royalties aso in IOUs we need to create several of them or have them support multiple receivers with fractions. What model is the best?
